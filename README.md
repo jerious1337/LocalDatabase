@@ -93,9 +93,9 @@ import * as Database from './path/to/the/database/main/file'
 ```ts
 const a_db = new Database.Database('path/to/your/database/json/file')
 ```
+---
 
-
-database file example:<br>
+## Database file example:
 ![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)
 
 
