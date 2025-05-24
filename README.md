@@ -14,7 +14,7 @@ how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
 <p>
-##Usage example:<br>
+## Usage example:<br>
 > json object (representation)<br>
 
 | Key  | Value |
@@ -40,6 +40,7 @@ Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpass
 - adding object to database<br>
 `Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })`<br>
 > adds the object to the database
+---
 
 how to setup in node:<br>
 - importing:<br>
