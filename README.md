@@ -10,8 +10,7 @@ features:
 how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
-- example:
-
+example:
 #json object (representation)
 | Key  | Value |
 | ------------- | ------------- |
@@ -31,10 +30,10 @@ updated object `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123
 `Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
 returns true<br>
 
-- how to setup in node:<br>
-importing:<br>
+how to setup in node:<br>
+- importing:<br>
 `import * as Database from './path/to/the/database/main/file'`<br>
 
-initing:<br>
+- initing:<br>
 `const a_db = new Database.Database('path/to/your/database/json/file')` # local database<br>
 
