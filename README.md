@@ -29,7 +29,8 @@
 ```ts
 Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })
 ```
-> returns ```ts
+returns 
+```ts
 { e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }
 ```
 
@@ -37,7 +38,8 @@ Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpass
 ```ts
 Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })
 ```
-> updated object ```ts
+updated object 
+```ts
 { e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }
 ```
 
