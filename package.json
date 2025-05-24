@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "name": "local-database",
+  "version": "1.0.0",
+  "description": "database node project",
+  "main": "data-base.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jerious1337",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.21"
+  }
+}
