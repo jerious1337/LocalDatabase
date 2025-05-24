@@ -1,5 +1,7 @@
 # LocalDatabase
 "database" made in typescript, used in my main project (Opencord)
+[dependencies]
+- fs
 
 features:
 - search for queries
