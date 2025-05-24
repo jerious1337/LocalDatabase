@@ -2,7 +2,9 @@
 ### "database" made in typescript, used in my main project (Opencord)
 
 ## Dependencies:
-- fs
+```ts
+import fs from 'fs'
+```
 
 ## Features:
 - search for queries
@@ -10,8 +12,8 @@
 - delete queries
 - add queries
 
-### How it works:
-- can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
+## How it works:
+Can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
 ## Usage example:<br>
 > json object (representation)<br>
@@ -80,12 +82,12 @@ Database.add_object({
 adds the object to the database.
 
 ## How to setup in node:<br>
-- importing:
+Importing:
 ```ts
 import * as Database from './path/to/the/database/main/file'
 ```
 
-- initing:<br>
+Initing:<br>
 ```ts
 const a_db = new Database.Database('path/to/your/database/json/file')
 ```
