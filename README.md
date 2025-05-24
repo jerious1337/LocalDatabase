@@ -41,12 +41,16 @@ Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpass
 > adds the object to the database
 ---
 
-how to setup in node:<br>
-- importing:<br>
-`import * as Database from './path/to/the/database/main/file'`<br>
+## How to setup in node:<br>
+- importing:
+```ts
+import * as Database from './path/to/the/database/main/file'
+```
 
 - initing:<br>
-`const a_db = new Database.Database('path/to/your/database/json/file')`<br>
+```ts
+const a_db = new Database.Database('path/to/your/database/json/file')
+```
 
 
 database file example:<br>
