@@ -11,7 +11,7 @@ how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
 example:<br>
-#json object (representation)<br>
+| json object (representation)<br>
 | Key  | Value |
 | ------------- | ------------- |
 | password:  | "auserpassoword123"  |
