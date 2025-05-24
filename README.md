@@ -7,16 +7,16 @@ import fs from 'fs'
 ```
 
 ## Features:
-- search for queries
-- edit queries
-- delete queries
-- add queries
+- Search for queries
+- Edit queries
+- Delete queries
+- Add queries
 
 ## How it works:
 Can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
 ## Usage example:<br>
-> json object (representation)<br>
+> JSON Object (representation)<br>
 
 | Key  | Value |
 | ------------- | ------------- |
