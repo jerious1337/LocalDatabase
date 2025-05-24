@@ -1,6 +1,7 @@
 # LocalDatabase
-"database" made in typescript, used in my main project (Opencord)
-[dependencies]
+"database" made in typescript, used in my main project (Opencord)<br>
+
+dependencies
 - fs
 
 features:
