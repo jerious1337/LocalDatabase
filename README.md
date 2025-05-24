@@ -25,9 +25,12 @@
 | e_mail:  | "agoogleemail@gmail.com"  |
 | user_name:  | "username123"  |
 
-### getting object from query<br>
+### Getting object from query<br>
 ```ts
-Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })
+Database.get_from_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+})
 ```
 returns 
 ```ts
@@ -43,13 +46,20 @@ updated object
 { e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }
 ```
 
-- checking if database contains query<br>
-`Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
-> returns true<br>
+### Checking if database contains query<br>
+```ts
+Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })
+```
+returns 
+```ts
+true
+```
 
-- adding object to database<br>
-`Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })`<br>
-> adds the object to the database
+### Adding object to database<br>
+```ts
+Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })
+```
+adds the object to the database
 ---
 
 ## How to setup in node:<br>
