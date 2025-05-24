@@ -14,7 +14,7 @@ how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
 <p>
-example:<br>
+##Usage example:<br>
 > json object (representation)<br>
 
 | Key  | Value |
