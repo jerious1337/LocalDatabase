@@ -20,18 +20,22 @@ example:<br>
 
 - getting object from query<br>
 `Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
+
 returns `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }` # json object<br>
 
 - updating object from query<br>
 `Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })`<br>
+
 updated object `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }`<br>
 
 - checking if database contains query<br>
 `Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
+
 returns true<br>
 
 - adding object to database<br>
 `Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })`<br>
+
 adds the object to the database
 
 how to setup in node:<br>
