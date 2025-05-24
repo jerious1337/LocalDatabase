@@ -12,11 +12,11 @@ how it works:
 - example:
 
 #json object (representation)
--------------------------------------
-| e_mail: "agoogleemail@gmail.com"  | 
-| password: "auserpassoword123"     |
-| user_name: "username123"          |
--------------------------------------
+| Key  | Value |
+| ------------- | ------------- |
+| password:  | "auserpassoword123"  |
+| e_mail:  | "agoogleemail@gmail.com"  |
+| user_name:  | "username123"  |
 
 #getting object from query
 `Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`
