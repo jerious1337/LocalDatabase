@@ -1,17 +1,20 @@
 # LocalDatabase
-"database" made in typescript, used in my main project (Opencord)<br>
+### "database" made in typescript, used in my main project (Opencord)
 
-dependencies:
+## Dependencies:
 - fs
+---
 
-features:
+## Features:
 - search for queries
 - edit queries
 - delete queries
 - add queries
+---
 
-how it works:
+### How it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
+---
 
 ## Usage example:<br>
 > json object (representation)<br>
