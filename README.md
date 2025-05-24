@@ -18,15 +18,15 @@ how it works:
 | e_mail:  | "agoogleemail@gmail.com"  |
 | user_name:  | "username123"  |
 
-#getting object from query
+- getting object from query
 `Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`
 returns `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }` # json object
 
-#updating object from query
+- updating object from query
 `Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })`
 updated object `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }`
 
-#checking if database contains query
+- checking if database contains query
 `Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`
 returns true
 
