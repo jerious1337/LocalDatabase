@@ -41,7 +41,7 @@ how to setup in node:<br>
 - initing:<br>
 `const a_db = new Database.Database('path/to/your/database/json/file')` # local database<br>
 
-database file example:
+database file example:<br>
 ![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)
 
 
