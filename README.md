@@ -29,7 +29,7 @@ Database.get_from_query({
   password: "auserpassoword123"
 })
 ```
-returns 
+returns:
 ```ts
 {
   e_mail: "agoogleemail@gmail.com",
@@ -48,7 +48,7 @@ Database.update_from_query({
   new_key: "astringvalue"
 })
 ```
-updated object 
+updated object:
 ```ts
 {
   e_mail: "agoogleemail@gmail.com",
@@ -65,7 +65,7 @@ Database.contains_query({
   password: "auserpassoword123"
 })
 ```
-returns
+returns:
 ```ts
 true
 ```
@@ -77,7 +77,7 @@ Database.add_object({
   password: "aoutlookuserpassoword123"
 })
 ```
-adds the object to the database
+adds the object to the database.
 
 ## How to setup in node:<br>
 - importing:
@@ -89,7 +89,6 @@ import * as Database from './path/to/the/database/main/file'
 ```ts
 const a_db = new Database.Database('path/to/your/database/json/file')
 ```
----
 
 ## Database file example:
 ![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)
