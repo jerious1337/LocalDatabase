@@ -3,18 +3,15 @@
 
 ## Dependencies:
 - fs
----
 
 ## Features:
 - search for queries
 - edit queries
 - delete queries
 - add queries
----
 
 ### How it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
----
 
 ## Usage example:<br>
 > json object (representation)<br>
@@ -68,7 +65,7 @@ Database.contains_query({
   password: "auserpassoword123"
 })
 ```
-returns 
+returns
 ```ts
 true
 ```
@@ -81,7 +78,6 @@ Database.add_object({
 })
 ```
 adds the object to the database
----
 
 ## How to setup in node:<br>
 - importing:
