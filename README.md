@@ -10,8 +10,8 @@ features:
 how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
-example:
-#json object (representation)
+example:<br>
+#json object (representation)<br>
 | Key  | Value |
 | ------------- | ------------- |
 | password:  | "auserpassoword123"  |
