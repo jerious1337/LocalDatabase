@@ -34,12 +34,22 @@ Database.get_from_query({
 ```
 returns 
 ```ts
-{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }
+{
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123",
+  user_name: "username123"
+}
 ```
 
 ### Updating object from query
 ```ts
-Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })
+Database.update_from_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+}, {
+  user_name: "usernameupdated",
+  new_key: "astringvalue"
+})
 ```
 updated object 
 ```ts
