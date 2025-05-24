@@ -13,7 +13,6 @@ features:
 how it works:
 - can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
 
-<p>
 ## Usage example:<br>
 > json object (representation)<br>
 
@@ -48,7 +47,6 @@ how to setup in node:<br>
 
 - initing:<br>
 `const a_db = new Database.Database('path/to/your/database/json/file')`<br>
-</p>
 
 
 database file example:<br>
