@@ -1,5 +1,5 @@
 # LocalDatabase
-### "database" made in typescript, used in my main project (Opencord)
+### A "Database" made with typescript, used in my main project (Opencord)
 
 ## Dependencies:
 ```ts
@@ -82,12 +82,12 @@ Database.add_object({
 adds the object to the database.
 
 ## How to setup in node:<br>
-Importing:
+Importing
 ```ts
 import * as Database from './path/to/the/database/main/file'
 ```
 
-Initing:<br>
+Initing<br>
 ```ts
 const a_db = new Database.Database('path/to/your/database/json/file')
 ```
