@@ -53,12 +53,20 @@ Database.update_from_query({
 ```
 updated object 
 ```ts
-{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }
+{
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123",
+  user_name: "usernameupdated",
+  new_key: "astringvalue"
+}
 ```
 
 ### Checking if database contains query<br>
 ```ts
-Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })
+Database.contains_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+})
 ```
 returns 
 ```ts
@@ -67,7 +75,10 @@ true
 
 ### Adding object to database<br>
 ```ts
-Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })
+Database.add_object({
+  e_mail: "aoutlookemail@outlook.com",
+  password: "aoutlookuserpassoword123"
+})
 ```
 adds the object to the database
 ---
