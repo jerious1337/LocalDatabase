@@ -21,7 +21,7 @@ example:<br>
 - getting object from query<br>
 `Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
 
-returns `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }` # json object<br>
+returns `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }`<br>
 
 - updating object from query<br>
 `Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })`<br>
