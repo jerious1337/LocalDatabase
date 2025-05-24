@@ -25,15 +25,21 @@
 | e_mail:  | "agoogleemail@gmail.com"  |
 | user_name:  | "username123"  |
 
-- getting object from query<br>
+### getting object from query<br>
 ```ts
 Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })
 ```
-> returns ```ts{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }```
+> returns ```ts
+{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }
+```
 
-- updating object from query<br>
-`Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })`<br>
-> updated object `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }`<br>
+### Updating object from query
+```ts
+Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })
+```
+> updated object ```ts
+{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }
+```
 
 - checking if database contains query<br>
 `Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
