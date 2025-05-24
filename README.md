@@ -6,6 +6,11 @@
 import fs from 'fs'
 ```
 
+## NPM Dependency:
+```ts
+import * as Database from 'jerious-local-database'
+```
+
 ## Features:
 - Search for queries
 - Edit queries
