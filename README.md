@@ -1,5 +1,5 @@
 # LocalDatabase
-### A "Database" made with typescript, used in my main project (Opencord)
+### A "Database" made with typescript
 
 ## Dependencies:
 ```ts
