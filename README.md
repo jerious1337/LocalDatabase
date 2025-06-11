@@ -1,20 +1,27 @@
 # LocalDatabase
-"database" made in typescript, used in my main project (Opencord)<br>
+### A "Database" made with typescript, used in my main project (Opencord)
 
-dependencies:
-- fs
+## How to Import:
+```ts
+import * as Database from 'jerious-local-database'
+```
 
-features:
-- search for queries
-- edit queries
-- delete queries
-- add queries
+## How to Install:
+```ts
+npm install 'jerious-local-database'
+```
 
-how it works:
-- can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
+## Features:
+- Search for queries
+- Edit queries
+- Delete queries
+- Add queries
 
-example:<br>
-> json object (representation)<br>
+## How it works:
+Can search for objects, edit objects, etc (with json objects), using a .json file as a database (all locally)
+
+## Usage example:<br>
+> JSON Object (representation)<br>
 
 | Key  | Value |
 | ------------- | ------------- |
@@ -22,30 +29,68 @@ example:<br>
 | e_mail:  | "agoogleemail@gmail.com"  |
 | user_name:  | "username123"  |
 
-- getting object from query<br>
-`Database.get_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
-> returns `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "username123" }`<br>
+### Getting object from query<br>
+```ts
+Database.get_from_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+})
+```
+returns:
+```ts
+{
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123",
+  user_name: "username123"
+}
+```
 
-- updating object from query<br>
-`Database.update_from_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" }, { user_name: "usernameupdated", new_key: "astringvalue" })`<br>
-> updated object `{ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123", user_name: "usernameupdated", new_key: "astringvalue" }`<br>
+### Updating object from query
+```ts
+Database.update_from_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+}, {
+  user_name: "usernameupdated",
+  new_key: "astringvalue"
+})
+```
+updated object:
+```ts
+{
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123",
+  user_name: "usernameupdated",
+  new_key: "astringvalue"
+}
+```
 
-- checking if database contains query<br>
-`Database.contains_query({ e_mail: "agoogleemail@gmail.com", password: "auserpassoword123" })`<br>
-> returns true<br>
+### Checking if database contains query<br>
+```ts
+Database.contains_query({
+  e_mail: "agoogleemail@gmail.com",
+  password: "auserpassoword123"
+})
+```
+returns:
+```ts
+true
+```
 
-- adding object to database<br>
-`Database.add_object({ e_mail: "aoutlookemail@outlook.com", password: "aoutlookuserpassoword123" })`<br>
-> adds the object to the database
+### Adding object to database<br>
+```ts
+Database.add_object({
+  e_mail: "aoutlookemail@outlook.com",
+  password: "aoutlookuserpassoword123"
+})
+```
+adds the object to the database.
 
-how to setup in node:<br>
-- importing:<br>
-`import * as Database from './path/to/the/database/main/file'`<br>
+## How to setup in node:<br>
+Initing<br>
+```ts
+const a_db = new Database.Database('path/to/your/database/json/file')
+```
 
-- initing:<br>
-`const a_db = new Database.Database('path/to/your/database/json/file')` # local database<br>
-
-database file example:<br>
-![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)
-
-
+## Database file example:
+![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)s

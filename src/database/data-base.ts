@@ -1,65 +1,124 @@
+
 import fs from 'fs'
 
-export class Database {
-    DB_PATH
+export class Database<T extends Record<string, any>> {
+    DB_FILE_PATH: string // .json file path.
+    indent_spaces: number = 4
+    data_base_cache: T[] | null = null
+    watching_file = false
     
-    constructor(file_path: string) {
-        this.DB_PATH = file_path
+    constructor(file_path: string, indent_spaces?: number) {
+        this.DB_FILE_PATH = file_path
+
+        if (!this.fileCheck()) {
+            throw new Error('[Error] File not found, file path: ' + file_path)
+        }
+
+        this.watchFile()
+
+        if (!indent_spaces) {
+            return
+        }
+
+        this.indent_spaces = indent_spaces
     }
 
-    public add_object(data: any) {
+    public async addObject(data: T) {
         try {
-            let logs = []
-        
-            if (fs.existsSync(this.DB_PATH)) {
-                const actual_data = fs.readFileSync(this.DB_PATH, 'utf-8')
-                logs = JSON.parse(actual_data)
+            const db = await this.loadCache()
+            
+            if (!db) {
+                console.log("[Error] Actual Data is null / undefined...")
+                return undefined
             }
-
-            logs.push(data)
-            fs.writeFileSync(this.DB_PATH, JSON.stringify(logs, null, 4), 'utf-8')
-            console.log('[Success] Sucessfully writed...')
+            await this.saveCacheWithUpdate(() => {
+                db.push(data)
+            })
+            console.log('[Success] Successfully written...')
         } catch (ex) {
             console.log('[Error] Exception while writing...')
             console.log('[Info] Details: ' + ex)
         }
     }
 
-    private async update_object_from_query(object: any, query: any) {
-        for (let key in query) {
-            if (query.hasOwnProperty(key)) {
-                object[key] = query[key];
-            }
+    private updateObjectFromQuery(object: T, query: T) {
+        if (!object || !query) {
+            console.log("[Error] Object / Query is undefined...")
+            return
         }
+        
+        Object.assign(object, query)
     }
     
-    public async update_from_query(query: any, new_query: any) {
-        const data_base = await this.read_data_base()
-        const queried_object = await this.get_object_from_query_from_data(query, data_base)
+    public async updateFromQuery(query: T, new_query: T) {
+        if (!query || !new_query) {
+            console.log("[Error] Query / New Query is undefined...")
+            return
+        }
         
-        if (!queried_object) {
-            return 0
+        const db = await this.loadCache()
+        
+        if (!db) {
+            console.log("[Error] Actual Data is null / undefined...")
+            return false
         }
 
-        await this.update_object_from_query(queried_object, new_query)
-        await this.rewrite_data_base(data_base)
-        return 1
+        const queried_object = await this.getObjectFromQueryFromData(query, db)
+        
+        if (!queried_object) {
+            return false
+        }
+
+        await this.saveCacheWithUpdate(() => {
+            this.updateObjectFromQuery(queried_object, new_query)
+        })
+        return true
     }
 
-    public contains_query(query: any) {
-        try {
-            if (!fs.existsSync(this.DB_PATH)) {
-                console.log('[Error] File don\'t exist\'s')
+    public async removeFromQuery(query: T, remove_all?: boolean) {
+        const db = await this.loadCache()
+        
+        if (!db) {
+            return false
+        }
+
+        if (remove_all) {
+            const length = db.length
+            await this.saveCacheWithUpdate(() => {
+                this.data_base_cache = db.filter(obj => !this.matchesQuery(obj, query))
+            })
+            if (!this.data_base_cache) {
                 return false
             }
-            const actual_data = JSON.parse(fs.readFileSync(this.DB_PATH, 'utf-8'))
-            try {
-                for (let data of actual_data) {
-                    if (this.matches_query(data, query)) {
-                        return true
-                    }
+            return this.data_base_cache.length > length
+        } else {
+            for (const obj of db) {
+                if (this.matchesQuery(obj, query)) {
+                    const index = db.indexOf(obj)
+                    await this.saveCacheWithUpdate(() => {
+                        db.splice(index, 1)
+                    })
+                    return true
                 }
+            }
+        }
+        console.log('[Error] Failed to remove object (object not found)...')
+        return false
+    }
+
+    public async containsQuery(query: T) {
+        try {
+            if (!this.fileCheck()) {
                 return false
+            }
+            const actual_data = await this.loadCache()
+            
+            if (!actual_data) {
+                console.log("[Error] Actual Data is null / undefined...")
+                return false
+            }
+            try {
+                return actual_data.some(data => this.matchesQuery(data, query))
             } catch (ex) {
                 console.log('[Error] Exception while running matchesQuery()...')
                 console.log('[Info] Details: ' + ex)
@@ -70,13 +129,12 @@ export class Database {
         }
     }
 
-    public async read_data_base() {
+    public async readDatabase() {
         try {
-            if (!fs.existsSync(this.DB_PATH)) {
-                console.log('[Error] File don\'t exist\'s')
+            if (!this.fileCheck()) {
                 return undefined
             }
-            const result = fs.readFileSync(this.DB_PATH, 'utf-8')
+            const result = await fs.promises.readFile(this.DB_FILE_PATH, 'utf-8')
             return JSON.parse(result)
         } catch (ex) {
             console.log('[Error] Exception while reading file...')
@@ -85,31 +143,31 @@ export class Database {
         }
     }
 
-    public async rewrite_data_base(arr: any) {
+    public async rewriteDatabase(array: T[]) {
         try {
-            if (!fs.existsSync(this.DB_PATH)) {
-                console.log('[Error] File don\'t exist\'s')
+            if (!this.fileCheck()) {
                 return
             }
 
-            fs.writeFileSync(this.DB_PATH, JSON.stringify(arr, null, 4), 'utf-8')
-            console.log('[Success] Rewrited file sucessfully...')
+            await fs.promises.writeFile(this.DB_FILE_PATH, JSON.stringify(array, null, this.indent_spaces), 'utf-8')
+            console.log('[Success] File rewritten sucessfully...')
         } catch (ex) {
             console.log('[Error] Exception while rewriting file...')
             console.log('[Info] Details: ' + ex)
         }
     }
 
-    public async get_object_from_query(query: any) {
-        try {
-            if (!fs.existsSync(this.DB_PATH)) {
-                console.log('[Error] File don\'t exist\'s')
-                return false
+    public async getObjectFromQuery(query: T) {
+        try { 
+            const actual_data = await this.loadCache()
+            
+            if (!actual_data) {
+                console.log("[Error] Actual Data is null / undefined...")
+                return undefined
             }
-            const actual_data = JSON.parse(fs.readFileSync(this.DB_PATH, 'utf-8'))
             try {
                 for (let data of actual_data) {
-                    if (this.matches_query(data, query)) {
+                    if (this.matchesQuery(data, query)) {
                         return data
                     }
                 }
@@ -124,10 +182,10 @@ export class Database {
         }
     }
     
-    public async get_object_from_query_from_data(query: any, data: any) {
+    public async getObjectFromQueryFromData(query: T, data: T[]) {
         try {
             for (const obj of data) {
-                if (this.matches_query(obj, query)) {
+                if (this.matchesQuery(obj, query)) {
                     return obj
                 }
             }
@@ -138,7 +196,89 @@ export class Database {
         }
     }
 
-    private matches_query(json: Record<string, any>, query: Record<string, any>) {
+    private matchesQuery(json: T, query: T) {
+        if (!json || !query) {
+            return false
+        }
+        
         return Object.entries(query).every(([key, value]) => json[key] === value);
+    }
+
+    private async loadCache(): Promise<T[]> {
+        if (!this.fileCheck()) {
+            return []
+        }
+
+        if (!this.data_base_cache) {
+            try {
+                let data = await fs.promises.readFile(this.DB_FILE_PATH, 'utf-8')
+                this.data_base_cache = JSON.parse(data) as T[]
+            } catch (err) {
+                console.log('[Error] Failed to read file...')
+                console.log('[Info] Error details: ' + err)
+                this.data_base_cache = []
+            }
+        }
+        return this.data_base_cache
+    }
+
+    private async saveCache() {
+        try {
+            if (!this.fileCheck() || !this.data_base_cache) {
+                return
+            }
+
+            await fs.promises.writeFile(this.DB_FILE_PATH, JSON.stringify(this.data_base_cache, null, this.indent_spaces), 'utf-8')
+        } catch (err) {
+            console.log('[Error] Failed to write file...')
+            console.log('[Info] Error details: ' + err)
+        }
+    }
+
+    private clearCache() {
+        this.data_base_cache = null
+    }
+
+    private async saveCacheWithUpdate(task: () => void | Promise<void>) {
+        try {
+            this.unwatchFile()
+            await task()
+            await this.saveCache()
+            this.watchFile()
+        } catch (err) {
+            console.log('[Error] Failed to save cache with update...')
+            console.log('[Info] Error details: ' + err)
+        }
+    }
+
+    private watchFile() {
+        if (this.watching_file) {
+            return
+        }
+        
+        fs.watchFile(this.DB_FILE_PATH, (curr, prev) => {
+            if (curr.mtimeMs !== prev.mtimeMs) {
+                console.log('[Info] File changed on disk, clearing cache...')
+                this.clearCache()
+            }
+        })
+        this.watching_file = true
+    }
+
+    private unwatchFile() {
+        if (!this.watching_file) {
+            return
+        }
+        
+        fs.unwatchFile(this.DB_FILE_PATH)
+        this.watching_file = false
+    }
+
+    private fileCheck() {
+        if (!fs.existsSync(this.DB_FILE_PATH)) {
+            console.log('[Error] File doesn\'t exist')
+            return false
+        }
+        return true
     }
 }

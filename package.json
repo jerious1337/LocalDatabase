@@ -1,17 +1,21 @@
 {
-  "dependencies": {
-    "fs": "^0.0.1-security"
-  },
-  "name": "local-database",
-  "version": "1.0.0",
-  "description": "database node project",
-  "main": "data-base.ts",
+  "name": "jerious-local-database",
+  "version": "1.1.8",
+  "description": "Database Node.js project using JSON as storage",
+  "main": "dist/database/data-base.js",
+  "types": "dist/database/data-base.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jerious1337",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.15.21"
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3"
   }
 }
