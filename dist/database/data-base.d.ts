@@ -1,52 +1,70 @@
 declare module 'jerious-local-database' {
-    export class Database {
-        /** 
-        * Database JSON file path e.g: 'C:\users\user\Documents\my-project\databases\users-database.json'
-        */
-        DB_PATH: string;
-
-        constructor(file_path: string);
+    export class Database<T extends Record<string, any> = Record<string, any>> {
+        /**
+         * Database JSON file path e.g: 'C:\\users\\user\\Documents\\my-project\\databases\\users-database.json'
+         */
+        DB_FILE_PATH: string;
 
         /**
-         * * Adds a object to database json object file
-         * @param data: object
+         * Number of spaces for JSON indentation
          */
-        add_object(data: any): void;
+        indent_spaces: number;
+
+        constructor(file_path: string, indent_spaces?: number);
 
         /**
-         * * Adds a object to database json object file
-         * @param query: query
-         * @param new_query: new query that will be assigned to the object returned from the @query
+         * Adds an object to the database JSON file
+         * @param data Object of type T
          */
-        update_from_query(query: any, new_query: any): Promise<0 | 1>;
+        addObject(data: T): Promise<void | undefined>;
 
         /**
-         * * Checks if a object with query exists
-         * @param query: query (JSON Object)
+         * Updates the first object matching the query with new values
+         * @param query Query object to find the record
+         * @param new_query Object with new values to assign
+         * @returns Promise resolving to boolean (true if update succeeded)
          */
-        contains_query(query: any): boolean | undefined;
+        updateFromQuery(query: T, new_query: T): Promise<boolean | undefined>;
 
         /**
-         * * Returns the entire database as a JSON Array
+         * Removes objects matching the query
+         * @param query Query object to match
+         * @param remove_all If true, removes all matches, otherwise removes first match
+         * @returns Promise resolving to boolean indicating if removal happened
          */
-        read_data_base(): Promise<any>;
+        removeFromQuery(query: T, remove_all?: boolean): Promise<boolean>;
 
         /**
-         * * Rewrites the entire database
-         * @param arr: content that will be overwritted
+         * Checks if any object matches the query
+         * @param query Query object
+         * @returns Promise resolving to boolean or undefined if error
          */
-        rewrite_data_base(arr: any): Promise<void>;
+        containsQuery(query: T): Promise<boolean | undefined>;
 
         /**
-         * * Returns a object that contains query
-         * @param query: query (JSON Object)
+         * Reads and returns the entire database as an array of T
          */
-        get_object_from_query(query: any): Promise<any>;
+        readDatabase(): Promise<T[] | undefined>;
 
         /**
-         * * Returns a object that contains query from data
-         * @param query: query (JSON Object)
+         * Overwrites the entire database with the given array
+         * @param array Array of objects to write
          */
-        get_object_from_query_from_data(query: any, data: any): Promise<any>;
+        rewriteDatabase(array: T[]): Promise<void>;
+
+        /**
+         * Gets the first object matching the query
+         * @param query Query object
+         * @returns Promise resolving to object of type T or undefined
+         */
+        getObjectFromQuery(query: T): Promise<T | undefined>;
+
+        /**
+         * Gets the first object matching the query from provided data array
+         * @param query Query object
+         * @param data Array of objects of type T to search
+         * @returns Promise resolving to object of type T or undefined
+         */
+        getObjectFromQueryFromData(query: T, data: T[]): Promise<T | undefined>;
     }
 }

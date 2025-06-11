@@ -1,5 +1,5 @@
 
-import fs from 'fs'
+import * as fs from 'fs'
 
 export class Database<T extends Record<string, any>> {
     DB_FILE_PATH: string // .json file path.
