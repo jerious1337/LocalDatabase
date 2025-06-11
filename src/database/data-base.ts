@@ -34,7 +34,6 @@ export class Database<T extends Record<string, any>> {
             await this.saveCacheWithUpdate(() => {
                 db.push(data)
             })
-            console.log('[Success] Successfully written...')
         } catch (ex) {
             console.log('[Error] Exception while writing...')
             console.log('[Info] Details: ' + ex)
