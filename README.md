@@ -1,14 +1,14 @@
 # LocalDatabase
-### A "Database" made with typescript, used in my main project (Opencord)
+### A Local Database made with typescript
 
-## How to Import:
+## Dependencies:
 ```ts
-import * as Database from 'jerious-local-database'
+import fs from 'fs'
 ```
 
-## How to Install:
+## NPM Dependency:
 ```ts
-npm install 'jerious-local-database'
+import * as Database from 'jerious-local-database'
 ```
 
 ## Features:
@@ -87,10 +87,15 @@ Database.add_object({
 adds the object to the database.
 
 ## How to setup in node:<br>
+Importing
+```ts
+import * as Database from './path/to/the/database/main/file'
+```
+
 Initing<br>
 ```ts
 const a_db = new Database.Database('path/to/your/database/json/file')
 ```
 
 ## Database file example:
-![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)s
+![Captura de tela de 2025-05-24 15-46-27](https://github.com/user-attachments/assets/55c6dbc1-3cc4-40f9-84b1-c5ddffdb3f77)
