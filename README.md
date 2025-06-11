@@ -1,5 +1,5 @@
 # LocalDatabase
-### A "Database" made with typescript
+### A Local Database made with typescript
 
 ## Dependencies:
 ```ts
