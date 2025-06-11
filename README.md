@@ -31,7 +31,7 @@ Can search for objects, edit objects, etc (with json objects), using a .json fil
 
 ### Getting object from query<br>
 ```ts
-Database.get_from_query({
+Database.getFromQuery({
   e_mail: "agoogleemail@gmail.com",
   password: "auserpassoword123"
 })
@@ -47,7 +47,7 @@ returns:
 
 ### Updating object from query
 ```ts
-Database.update_from_query({
+Database.updateFromQuery({
   e_mail: "agoogleemail@gmail.com",
   password: "auserpassoword123"
 }, {
@@ -67,7 +67,7 @@ updated object:
 
 ### Checking if database contains query<br>
 ```ts
-Database.contains_query({
+Database.containsQuery({
   e_mail: "agoogleemail@gmail.com",
   password: "auserpassoword123"
 })
@@ -79,7 +79,7 @@ true
 
 ### Adding object to database<br>
 ```ts
-Database.add_object({
+Database.addObject({
   e_mail: "aoutlookemail@outlook.com",
   password: "aoutlookuserpassoword123"
 })
